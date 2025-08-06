@@ -571,7 +571,7 @@
             <div class="icon-label">Newsletter for Weirdos</div>
         </div>
         
-        <div class="desktop-icon" style="top: 410px; left: 20px;" onclick="window.open('https://ko-fi.com/ladydustbunny', '_blank')">
+        <div class="desktop-icon" style="top: 410px; left: 20px;" onclick="window.open('https://ko-fi.com/YOUR_KOFI_USERNAME', '_blank')">
             <div class="icon-image">☕</div>
             <div class="icon-label">Buy Me a Coffee</div>
         </div>
@@ -742,11 +742,25 @@
             <div style="margin-bottom: 12px; font-weight: bold;">Weekly Internet Chaos Delivery 📮</div>
             <p>Get a tiny, funny, link-heavy email every Tuesday.</p>
             <p style="font-style: italic; margin: 8px 0;">"Here's what I found this week on the internet. Also, here's a cursed horse gif."</p>
-            <form style="margin-top: 16px;">
+            <form action="https://gmail.us10.list-manage.com/subscribe/post?u=14e293c0f9ffca8a56663903f&id=e67dfc78c9&f_id=00d630e2f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" style="margin-top: 16px;">
                 <div class="form-group">
-                    <input type="email" class="form-input" placeholder="youremail@whatever.com">
+                    <label for="mce-FNAME" style="font-size: 11px; margin-bottom: 2px; display: block;">First Name (optional):</label>
+                    <input type="text" name="FNAME" id="mce-FNAME" class="form-input" placeholder="your cute name">
                 </div>
-                <button type="submit" class="form-button">Subscribe to Chaos 💌</button>
+                <div class="form-group">
+                    <label for="mce-EMAIL" style="font-size: 11px; margin-bottom: 2px; display: block;">Email Address <span style="color: #ff69b4;">*</span></label>
+                    <input type="email" name="EMAIL" id="mce-EMAIL" class="form-input required email" placeholder="youremail@whatever.com" required>
+                </div>
+                <!-- Mailchimp validation responses -->
+                <div id="mce-responses" style="clear: both; margin-top: 8px;">
+                    <div class="response" id="mce-error-response" style="display: none; color: #ff0000; font-size: 10px;"></div>
+                    <div class="response" id="mce-success-response" style="display: none; color: #008000; font-size: 10px;"></div>
+                </div>
+                <!-- Anti-spam honeypot -->
+                <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_14e293c0f9ffca8a56663903f_e67dfc78c9" tabindex="-1" value="">
+                </div>
+                <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="form-button">Subscribe to Chaos 💌</button>
             </form>
             <div style="margin-top: 16px; font-size: 10px; color: #666;">
                 Free tier: Weekly weirdness<br>
@@ -1056,6 +1070,35 @@
         document.addEventListener('mouseup', () => {
             isDragging = false;
             currentWindow = null;
+        });
+        
+        // Mailchimp form validation (simplified version)
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('mc-embedded-subscribe-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const email = document.getElementById('mce-EMAIL').value;
+                    const errorResponse = document.getElementById('mce-error-response');
+                    const successResponse = document.getElementById('mce-success-response');
+                    
+                    // Clear previous messages
+                    errorResponse.style.display = 'none';
+                    successResponse.style.display = 'none';
+                    
+                    // Basic email validation
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        e.preventDefault();
+                        errorResponse.innerHTML = 'Please enter a valid email address ✨';
+                        errorResponse.style.display = 'block';
+                        return false;
+                    }
+                    
+                    // Show success message briefly before redirect
+                    successResponse.innerHTML = 'Adding you to the chaos list! 💌';
+                    successResponse.style.display = 'block';
+                });
+            }
         });
     </script>
 </body>
