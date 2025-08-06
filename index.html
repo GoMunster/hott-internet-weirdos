@@ -21,7 +21,7 @@
             animation: sparkleWallpaper 15s ease infinite;
             height: 100vh;
             overflow: hidden;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="18" font-size="16">💖</text></svg>'), auto;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"><text y="24" font-size="22">💖</text></svg>'), auto;
         }
         
         @keyframes sparkleWallpaper {
@@ -47,10 +47,11 @@
         .start-button {
             background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
             border: 2px outset #c0c0c0;
-            padding: 4px 12px;
+            padding: 8px 20px;
             font-weight: bold;
             cursor: pointer;
             margin-right: 8px;
+            font-size: 12px;
         }
         
         .start-button:active {
@@ -74,7 +75,7 @@
         
         .desktop-icon {
             position: absolute;
-            width: 80px;
+            width: 100px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -89,14 +90,14 @@
         }
         
         .icon-image {
-            width: 32px;
-            height: 32px;
+            width: 48px;
+            height: 48px;
             background: linear-gradient(135deg, #ff69b4, #ba55d3);
             border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 28px;
             margin-bottom: 4px;
             box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
@@ -106,8 +107,8 @@
             padding: 2px 4px;
             border-radius: 2px;
             text-align: center;
-            font-size: 10px;
-            max-width: 80px;
+            font-size: 12px;
+            max-width: 100px;
             word-wrap: break-word;
         }
         
@@ -116,8 +117,8 @@
             position: absolute;
             background: #c0c0c0;
             border: 2px outset #c0c0c0;
-            min-width: 300px;
-            min-height: 200px;
+            min-width: 400px;
+            min-height: 300px;
             display: none;
             z-index: 100;
         }
@@ -165,10 +166,11 @@
         }
         
         .window-content {
-            padding: 12px;
+            padding: 16px;
             height: calc(100% - 24px);
             overflow-y: auto;
             background: #c0c0c0;
+            font-size: 12px;
         }
         
         /* Specific window content styles */
@@ -279,6 +281,53 @@
             51%, 100% { opacity: 0; }
         }
         
+        /* Accessibility mode */
+        .high-contrast {
+            background: #000 !important;
+            animation: none !important;
+        }
+        
+        .high-contrast .window,
+        .high-contrast .window-content,
+        .high-contrast .taskbar {
+            background: #000 !important;
+            color: #fff !important;
+            border-color: #fff !important;
+        }
+        
+        .high-contrast .icon-image {
+            background: #fff !important;
+            color: #000 !important;
+        }
+        
+        .high-contrast .icon-label {
+            background: #fff !important;
+            color: #000 !important;
+        }
+        
+        .high-contrast .link-item {
+            background: #333 !important;
+            color: #fff !important;
+            border-color: #fff !important;
+        }
+        
+        .high-contrast .link-item:hover {
+            background: #666 !important;
+        }
+        
+        .accessibility-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #333;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 3000;
+            font-size: 12px;
+        }
+        
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .desktop-icon {
@@ -302,40 +351,50 @@
 </head>
 <body>
     <div class="desktop">
+        <!-- Accessibility Toggle -->
+        <div class="accessibility-toggle" onclick="toggleAccessibility()">
+            🎨 High Contrast Mode
+        </div>
+        
         <!-- Desktop Icons -->
         <div class="desktop-icon" style="top: 20px; left: 20px;" onclick="openWindow('indie-picks')">
             <div class="icon-image">📁</div>
             <div class="icon-label">Indie Picks of the Week</div>
         </div>
         
-        <div class="desktop-icon" style="top: 120px; left: 20px;" onclick="openWindow('horse-games')">
+        <div class="desktop-icon" style="top: 150px; left: 20px;" onclick="openWindow('horse-games')">
             <div class="icon-image">🐴</div>
             <div class="icon-label">Horse Girl Games Archive</div>
         </div>
         
-        <div class="desktop-icon" style="top: 220px; left: 20px;" onclick="openWindow('weird-tools')">
+        <div class="desktop-icon" style="top: 280px; left: 20px;" onclick="openWindow('weird-tools')">
             <div class="icon-image">🧃</div>
             <div class="icon-label">Weird Girl Tools</div>
         </div>
         
-        <div class="desktop-icon" style="top: 20px; left: 120px;" onclick="openWindow('submit')">
+        <div class="desktop-icon" style="top: 20px; left: 150px;" onclick="openWindow('submit')">
             <div class="icon-image">✨</div>
             <div class="icon-label">Submit Your Cool Thing</div>
         </div>
         
-        <div class="desktop-icon" style="top: 120px; left: 120px;" onclick="openWindow('downloads')">
+        <div class="desktop-icon" style="top: 150px; left: 150px;" onclick="openWindow('downloads')">
             <div class="icon-image">💾</div>
             <div class="icon-label">Downloads</div>
         </div>
         
-        <div class="desktop-icon" style="top: 220px; left: 120px;" onclick="openWindow('newsletter')">
+        <div class="desktop-icon" style="top: 280px; left: 150px;" onclick="openWindow('newsletter')">
             <div class="icon-image">💌</div>
             <div class="icon-label">Newsletter for Weirdos</div>
+        </div>
+        
+        <div class="desktop-icon" style="top: 410px; left: 20px;" onclick="window.open('https://ko-fi.com/YOUR_KOFI_USERNAME', '_blank')">
+            <div class="icon-image">☕</div>
+            <div class="icon-label">Buy Me a Coffee</div>
         </div>
     </div>
     
     <!-- Windows -->
-    <div id="indie-picks" class="window" style="width: 500px; height: 400px; top: 100px; left: 200px;">
+    <div id="indie-picks" class="window" style="width: 600px; height: 500px; top: 100px; left: 200px;">
         <div class="window-header">
             <div class="window-title">📁 Indie Picks of the Week</div>
             <div class="window-controls">
@@ -359,7 +418,7 @@
         </div>
     </div>
     
-    <div id="horse-games" class="window" style="width: 600px; height: 450px; top: 80px; left: 150px;">
+    <div id="horse-games" class="window" style="width: 650px; height: 500px; top: 80px; left: 150px;">
         <div class="window-header">
             <div class="window-title">🐴 Horse Girl Games Archive</div>
             <div class="window-controls">
@@ -384,7 +443,7 @@
         </div>
     </div>
     
-    <div id="weird-tools" class="window" style="width: 550px; height: 400px; top: 120px; left: 250px;">
+    <div id="weird-tools" class="window" style="width: 600px; height: 450px; top: 120px; left: 250px;">
         <div class="window-header">
             <div class="window-title">🧃 Weird Girl Tools</div>
             <div class="window-controls">
@@ -406,7 +465,7 @@
         </div>
     </div>
     
-    <div id="submit" class="window" style="width: 450px; height: 350px; top: 140px; left: 300px;">
+    <div id="submit" class="window" style="width: 500px; height: 400px; top: 140px; left: 300px;">
         <div class="window-header">
             <div class="window-title">✨ Submit Your Cool Thing</div>
             <div class="window-controls">
@@ -437,7 +496,7 @@
         </div>
     </div>
     
-    <div id="downloads" class="window" style="width: 500px; height: 350px; top: 160px; left: 350px;">
+    <div id="downloads" class="window" style="width: 550px; height: 400px; top: 160px; left: 350px;">
         <div class="window-header">
             <div class="window-title">💾 Downloads</div>
             <div class="window-controls">
@@ -460,7 +519,7 @@
         </div>
     </div>
     
-    <div id="newsletter" class="window" style="width: 450px; height: 300px; top: 180px; left: 400px;">
+    <div id="newsletter" class="window" style="width: 500px; height: 350px; top: 180px; left: 400px;">
         <div class="window-header">
             <div class="window-title">💌 Newsletter for Weirdos</div>
             <div class="window-controls">
@@ -545,6 +604,11 @@
         
         setInterval(updateClock, 1000);
         updateClock();
+        
+        // Accessibility toggle
+        function toggleAccessibility() {
+            document.body.classList.toggle('high-contrast');
+        }
         
         // Water reminder only shows when clicking Start button
         
