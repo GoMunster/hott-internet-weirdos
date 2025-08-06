@@ -350,8 +350,8 @@
         
         /* Buddy List Styles */
         .buddy-list {
-            width: 280px !important;
-            height: 450px !important;
+            width: 320px !important;
+            height: 480px !important;
         }
         
         .buddy-group {
@@ -361,11 +361,11 @@
         
         .buddy-group-header {
             background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
-            padding: 4px 8px;
+            padding: 6px 8px;
             font-weight: bold;
             cursor: pointer;
             border: 1px outset #c0c0c0;
-            font-size: 11px;
+            font-size: 12px;
             user-select: none;
         }
         
@@ -383,9 +383,9 @@
         }
         
         .buddy-item {
-            padding: 3px 8px 3px 20px;
+            padding: 5px 8px 5px 20px;
             cursor: pointer;
-            font-size: 11px;
+            font-size: 14px;
             border-bottom: 1px solid #f0f0f0;
             display: flex;
             align-items: center;
@@ -442,9 +442,93 @@
         }
         
         .buddy-profile {
-            font-size: 10px;
+            font-size: 12px;
             color: #666;
             padding-left: 28px;
+            font-style: italic;
+        }
+        
+        /* Chat Window Styles */
+        .chat-window {
+            width: 400px !important;
+            height: 350px !important;
+        }
+        
+        .chat-content {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 24px);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 8px;
+            overflow-y: auto;
+            background: white;
+            border-bottom: 2px inset #c0c0c0;
+            font-family: 'MS Gothic', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .chat-input-area {
+            height: 60px;
+            background: #c0c0c0;
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-input {
+            flex: 1;
+            border: 2px inset #c0c0c0;
+            padding: 4px;
+            font-family: 'MS Gothic', monospace;
+            font-size: 11px;
+            resize: none;
+        }
+        
+        .chat-buttons {
+            display: flex;
+            gap: 4px;
+            margin-top: 4px;
+            justify-content: flex-end;
+        }
+        
+        .chat-button {
+            background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+            border: 2px outset #c0c0c0;
+            padding: 2px 8px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        
+        .chat-button:active {
+            border: 2px inset #c0c0c0;
+        }
+        
+        .message {
+            margin-bottom: 8px;
+        }
+        
+        .message-header {
+            font-weight: bold;
+            color: #000080;
+        }
+        
+        .message-time {
+            color: #666;
+            font-size: 10px;
+        }
+        
+        .message-text {
+            color: #000;
+            margin-top: 2px;
+        }
+        
+        .auto-message {
+            color: #800080;
             font-style: italic;
         }
     </style>
@@ -495,6 +579,29 @@
         <div class="desktop-icon" style="top: 20px; left: 280px;" onclick="openWindow('buddy-list')">
             <div class="icon-image">👥</div>
             <div class="icon-label">AIM Buddy List</div>
+        </div>
+    </div>
+    
+    <!-- Chat Window -->
+    <div id="chat-site_admin_gurl" class="window chat-window" style="top: 120px; left: 380px;">
+        <div class="window-header">
+            <div class="window-title">💬 Instant Message from site_admin_gurl</div>
+            <div class="window-controls">
+                <div class="window-button" onclick="minimizeWindow('chat-site_admin_gurl')">_</div>
+                <div class="window-button" onclick="closeWindow('chat-site_admin_gurl')">×</div>
+            </div>
+        </div>
+        <div class="window-content chat-content">
+            <div class="chat-messages" id="chat-messages-site_admin_gurl">
+                <!-- Messages will be populated by JavaScript -->
+            </div>
+            <div class="chat-input-area">
+                <textarea class="chat-input" placeholder="Type your message here..."></textarea>
+                <div class="chat-buttons">
+                    <button class="chat-button">Send</button>
+                    <button class="chat-button">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -674,7 +781,7 @@
                         user757830
                     </div>
                     
-                    <div class="buddy-item away">
+                    <div class="buddy-item away" onclick="openChatWindow('site_admin_gurl')">
                         <div class="buddy-status status-away"></div>
                         site_admin_gurl
                     </div>
@@ -825,6 +932,98 @@
         
         function minimizeWindow(windowId) {
             document.getElementById(windowId).classList.remove('active');
+        }
+        
+        // Chat window functions
+        function openChatWindow(username) {
+            const chatWindow = document.getElementById(`chat-${username}`);
+            chatWindow.classList.add('active');
+            
+            // Play AIM message sound (using Web Audio API to create a simple beep)
+            playAIMSound();
+            
+            // Populate chat messages for site_admin_gurl
+            if (username === 'site_admin_gurl') {
+                populateAdminChat();
+            }
+            
+            createSparkles(event);
+        }
+        
+        function playAIMSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.2);
+            } catch (e) {
+                console.log('Audio not supported');
+            }
+        }
+        
+        function populateAdminChat() {
+            const messagesContainer = document.getElementById('chat-messages-site_admin_gurl');
+            const messages = [
+                {
+                    sender: 'site_admin_gurl',
+                    time: getCurrentTime(),
+                    text: 'hey! just wanted to give you a heads up about some site updates 💻',
+                    isAuto: false
+                },
+                {
+                    sender: 'site_admin_gurl',
+                    time: getCurrentTime(1),
+                    text: 'we just pushed the new Y2K theme live - should be loading for everyone now!',
+                    isAuto: false
+                },
+                {
+                    sender: 'site_admin_gurl',
+                    time: getCurrentTime(2),
+                    text: 'also fixed that bug with the sparkle effects on mobile 🌟',
+                    isAuto: false
+                },
+                {
+                    sender: 'site_admin_gurl',
+                    time: getCurrentTime(3),
+                    text: 'Auto response: currently debugging the horse game archive links - brb! 🐴',
+                    isAuto: true
+                }
+            ];
+            
+            let html = '';
+            messages.forEach(message => {
+                html += `
+                    <div class="message">
+                        <div class="message-header">
+                            ${message.sender} 
+                            <span class="message-time">(${message.time})</span>
+                        </div>
+                        <div class="message-text ${message.isAuto ? 'auto-message' : ''}">
+                            ${message.text}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            messagesContainer.innerHTML = html;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function getCurrentTime(minutesOffset = 0) {
+            const now = new Date();
+            now.setMinutes(now.getMinutes() + minutesOffset);
+            return now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         }
         
         // Water reminder only shows when clicking Start button
