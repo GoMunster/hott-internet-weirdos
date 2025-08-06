@@ -686,25 +686,29 @@
         </div>
         <div class="window-content">
             <div style="margin-bottom: 12px; font-weight: bold;">Share Your Internet Treasures! ✨</div>
-            <form id="submit-form">
+            <form action="https://formspree.io/f/mrblyndd" method="POST" id="submit-form">
                 <div class="form-group">
                     <label>Your Name/Handle:</label>
-                    <input type="text" id="user-name" class="form-input" placeholder="hotgirlsummer2024" required>
+                    <input type="text" name="name" class="form-input" placeholder="hotgirlsummer2024" required>
                 </div>
                 <div class="form-group">
                     <label>What's Your Cool Thing?</label>
-                    <input type="text" id="cool-thing" class="form-input" placeholder="My indie game/art/book/website..." required>
+                    <input type="text" name="cool_thing" class="form-input" placeholder="My indie game/art/book/website..." required>
                 </div>
                 <div class="form-group">
                     <label>URL:</label>
-                    <input type="url" id="cool-url" class="form-input" placeholder="https://mycoolsite.com">
+                    <input type="url" name="url" class="form-input" placeholder="https://mycoolsite.com">
                 </div>
                 <div class="form-group">
                     <label>Why It's Amazing:</label>
-                    <textarea id="why-amazing" class="form-textarea" rows="3" placeholder="Tell me why I need this in my life..." required></textarea>
+                    <textarea name="why_amazing" class="form-textarea" rows="3" placeholder="Tell me why I need this in my life..." required></textarea>
                 </div>
+                <input type="hidden" name="_subject" value="✨ New Cool Thing Submission from Your Y2K Desktop!">
                 <button type="submit" class="form-button">✨ Send to the Void ✨</button>
             </form>
+            <div id="submit-success" style="display: none; margin-top: 12px; padding: 8px; background: #e8f5e8; border: 1px solid #4caf50; color: #2e7d32; text-align: center;">
+                🌟 Your cool thing has been sent to the void! Thanks for sharing! ✨
+            </div>
         </div>
     </div>
     
@@ -1108,32 +1112,32 @@
                 submitForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    const name = document.getElementById('user-name').value;
-                    const coolThing = document.getElementById('cool-thing').value;
-                    const url = document.getElementById('cool-url').value;
-                    const whyAmazing = document.getElementById('why-amazing').value;
+                    // Get form data
+                    const formData = new FormData(submitForm);
                     
-                    // Create email content
-                    const subject = encodeURIComponent('✨ New Cool Thing Submission from ' + name);
-                    const body = encodeURIComponent(
-                        `Hey!\n\nSomeone submitted a cool thing through your Y2K desktop! 💖\n\n` +
-                        `👤 Name/Handle: ${name}\n` +
-                        `✨ What's Their Cool Thing: ${coolThing}\n` +
-                        `🔗 URL: ${url || 'No URL provided'}\n` +
-                        `💕 Why It's Amazing:\n${whyAmazing}\n\n` +
-                        `Time: ${new Date().toLocaleString()}\n\n` +
-                        `Sent from your Hot Internet Weirdos desktop! 🌟`
-                    );
-                    
-                    // Open email client with pre-filled content
-                    const mailtoLink = `mailto:gomunster@gmail.com?subject=${subject}&body=${body}`;
-                    window.open(mailtoLink, '_self');
-                    
-                    // Show success message
-                    alert('📧 Opening your email client! The message is ready to send. ✨');
-                    
-                    // Optional: Clear the form
-                    submitForm.reset();
+                    // Submit to Formspree
+                    fetch('https://formspree.io/f/mrblyndd', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Show success message
+                            document.getElementById('submit-success').style.display = 'block';
+                            // Reset form
+                            submitForm.reset();
+                            // Scroll to show success message
+                            document.getElementById('submit-success').scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    })
+                    .catch(error => {
+                        alert('Oops! Something went wrong. Please try again! 💖');
+                    });
                 });
             }
         });
