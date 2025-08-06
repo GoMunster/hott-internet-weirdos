@@ -347,6 +347,106 @@
                 top: 15vh !important;
             }
         }
+        
+        /* Buddy List Styles */
+        .buddy-list {
+            width: 280px !important;
+            height: 450px !important;
+        }
+        
+        .buddy-group {
+            border-bottom: 1px solid #999;
+            margin-bottom: 2px;
+        }
+        
+        .buddy-group-header {
+            background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+            padding: 4px 8px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px outset #c0c0c0;
+            font-size: 11px;
+            user-select: none;
+        }
+        
+        .buddy-group-header:hover {
+            background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+        }
+        
+        .buddy-group-header.collapsed {
+            border-bottom: none;
+        }
+        
+        .buddy-list-content {
+            background: white;
+            padding: 0;
+        }
+        
+        .buddy-item {
+            padding: 3px 8px 3px 20px;
+            cursor: pointer;
+            font-size: 11px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .buddy-item:hover {
+            background: #cce8ff;
+        }
+        
+        .buddy-item.online {
+            font-weight: normal;
+        }
+        
+        .buddy-item.away {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .buddy-item.idle {
+            color: #666;
+        }
+        
+        .buddy-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        
+        .status-online {
+            background: #00ff00;
+            box-shadow: 0 0 3px #00ff00;
+        }
+        
+        .status-away {
+            background: #ffaa00;
+            box-shadow: 0 0 3px #ffaa00;
+        }
+        
+        .status-idle {
+            background: #ff0000;
+            box-shadow: 0 0 3px #ff0000;
+        }
+        
+        .status-offline {
+            background: #999;
+        }
+        
+        .buddy-count {
+            font-size: 9px;
+            color: #666;
+            margin-left: auto;
+        }
+        
+        .buddy-profile {
+            font-size: 10px;
+            color: #666;
+            padding-left: 28px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -390,6 +490,11 @@
         <div class="desktop-icon" style="top: 410px; left: 20px;" onclick="window.open('https://ko-fi.com/YOUR_KOFI_USERNAME', '_blank')">
             <div class="icon-image">☕</div>
             <div class="icon-label">Buy Me a Coffee</div>
+        </div>
+        
+        <div class="desktop-icon" style="top: 20px; left: 280px;" onclick="openWindow('buddy-list')">
+            <div class="icon-image">👥</div>
+            <div class="icon-label">AIM Buddy List</div>
         </div>
     </div>
     
@@ -543,6 +648,98 @@
         </div>
     </div>
     
+    <!-- Buddy List Window -->
+    <div id="buddy-list" class="window buddy-list" style="top: 50px; left: 50px;">
+        <div class="window-header">
+            <div class="window-title">👥 Hot_Weirdo25's Buddy List</div>
+            <div class="window-controls">
+                <div class="window-button" onclick="minimizeWindow('buddy-list')">_</div>
+                <div class="window-button" onclick="closeWindow('buddy-list')">×</div>
+            </div>
+        </div>
+        <div class="window-content buddy-list-content">
+            <div class="buddy-group">
+                <div class="buddy-group-header" onclick="toggleBuddyGroup('online-buddies')">
+                    ▼ Buddies <span class="buddy-count">(8/25)</span>
+                </div>
+                <div id="online-buddies" class="buddy-group-content">
+                    <div class="buddy-item online">
+                        <div class="buddy-status status-online"></div>
+                        princess_x_writer
+                    </div>
+                    <div class="buddy-profile">✨ living my best Y2K fantasy ✨</div>
+                    
+                    <div class="buddy-item online">
+                        <div class="buddy-status status-online"></div>
+                        user757830
+                    </div>
+                    
+                    <div class="buddy-item away">
+                        <div class="buddy-status status-away"></div>
+                        site_admin_gurl
+                    </div>
+                    <div class="buddy-profile">brb fixing the internet 💻</div>
+                    
+                    <div class="buddy-item online">
+                        <div class="buddy-status status-online"></div>
+                        emo_horse_girl
+                    </div>
+                    <div class="buddy-profile">my chemical romance 🐴</div>
+                    
+                    <div class="buddy-item idle">
+                        <div class="buddy-status status-idle"></div>
+                        glitter_goddess
+                    </div>
+                    
+                    <div class="buddy-item online">
+                        <div class="buddy-status status-online"></div>
+                        cyber_witch_2000
+                    </div>
+                    <div class="buddy-profile">casting spells thru dialup 🔮</div>
+                    
+                    <div class="buddy-item away">
+                        <div class="buddy-status status-away"></div>
+                        kawaii_chaos
+                    </div>
+                    
+                    <div class="buddy-item online">
+                        <div class="buddy-status status-online"></div>
+                        indie_film_queen
+                    </div>
+                    <div class="buddy-profile">currently: crying to lana del rey</div>
+                </div>
+            </div>
+            
+            <div class="buddy-group">
+                <div class="buddy-group-header" onclick="toggleBuddyGroup('offline-buddies')">
+                    ▶ Offline <span class="buddy-count">(17)</span>
+                </div>
+                <div id="offline-buddies" class="buddy-group-content" style="display: none;">
+                    <div class="buddy-item">
+                        <div class="buddy-status status-offline"></div>
+                        vintage_vibes_only
+                    </div>
+                    <div class="buddy-item">
+                        <div class="buddy-status status-offline"></div>
+                        art_school_dropout
+                    </div>
+                    <div class="buddy-item">
+                        <div class="buddy-status status-offline"></div>
+                        thrift_store_fairy
+                    </div>
+                    <div class="buddy-item">
+                        <div class="buddy-status status-offline"></div>
+                        polaroid_princess
+                    </div>
+                    <div class="buddy-item">
+                        <div class="buddy-status status-offline"></div>
+                        coffee_shop_poet
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Taskbar -->
     <div class="taskbar">
         <div class="start-button" onclick="showPopup()">💖 Start</div>
@@ -608,6 +805,26 @@
         // Accessibility toggle
         function toggleAccessibility() {
             document.body.classList.toggle('high-contrast');
+        }
+        
+        // Buddy list functions
+        function toggleBuddyGroup(groupId) {
+            const content = document.getElementById(groupId);
+            const header = content.previousElementSibling;
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                header.innerHTML = header.innerHTML.replace('▶', '▼');
+                header.classList.remove('collapsed');
+            } else {
+                content.style.display = 'none';
+                header.innerHTML = header.innerHTML.replace('▼', '▶');
+                header.classList.add('collapsed');
+            }
+        }
+        
+        function minimizeWindow(windowId) {
+            document.getElementById(windowId).classList.remove('active');
         }
         
         // Water reminder only shows when clicking Start button
