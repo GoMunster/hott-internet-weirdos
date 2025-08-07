@@ -44,8 +44,8 @@
         /* Robot Buddy Styles */
         .clippy-buddy {
             position: fixed;
-            bottom: 40px;
-            right: 20px;
+            bottom: 60px;
+            right: 60px;
             width: 140px;
             height: 120px;
             z-index: 2500;
@@ -59,12 +59,13 @@
         
         .clippy-character {
             width: 90px;
-            height: 70px;
+            height: 90px;
             background: linear-gradient(145deg, #C0C0C0, #808080);
             border: 3px solid #333;
             border-radius: 8px;
             position: relative;
             margin: 0 auto;
+            top: 15px;
             animation: robotHover 4s ease-in-out infinite;
             cursor: pointer;
             box-shadow: inset 2px 2px 4px rgba(255,255,255,0.3), inset -2px -2px 4px rgba(0,0,0,0.3);
@@ -75,14 +76,14 @@
             50% { transform: translateY(-8px); }
         }
         
-        /* Robot head */
+        /* Robot head - positioned on top of main body */
         .robot-head {
             position: absolute;
-            top: -25px;
+            top: -35px;
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
-            height: 45px;
+            height: 40px;
             background: linear-gradient(145deg, #E8E8E8, #A8A8A8);
             border: 3px solid #333;
             border-radius: 6px;
@@ -168,14 +169,14 @@
             border-radius: 2px;
         }
         
-        /* Robot body panels */
+        /* Robot body panels - now inside the main body */
         .robot-panel {
             position: absolute;
-            top: 30px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 20px;
+            width: 50px;
+            height: 25px;
             background: linear-gradient(145deg, #B8B8B8, #888888);
             border: 2px solid #333;
             border-radius: 4px;
@@ -184,16 +185,16 @@
         
         .robot-buttons {
             position: absolute;
-            top: 3px;
+            top: 4px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 4px;
+            gap: 6px;
         }
         
         .robot-button {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border: 1px solid #333;
             border-radius: 50%;
         }
@@ -228,53 +229,53 @@
             85% { opacity: 1; }
         }
         
-        /* Robot arms */
+        /* Robot arms - attached to main body */
         .robot-arms {
             position: absolute;
-            top: 20px;
+            top: 25px;
             width: 100%;
             height: 30px;
         }
         
         .robot-arm {
             position: absolute;
-            width: 20px;
-            height: 8px;
+            width: 25px;
+            height: 10px;
             background: linear-gradient(90deg, #C0C0C0, #808080);
             border: 2px solid #333;
-            border-radius: 4px;
+            border-radius: 5px;
             box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3);
         }
         
         .robot-arm.left {
-            left: -25px;
+            left: -22px;
             transform-origin: right center;
             animation: robotArmMove1 6s ease-in-out infinite;
         }
         
         .robot-arm.right {
-            right: -25px;
+            right: -22px;
             transform-origin: left center;
             animation: robotArmMove2 7s ease-in-out infinite;
         }
         
         .robot-hand {
             position: absolute;
-            top: -2px;
-            width: 8px;
-            height: 12px;
+            top: -3px;
+            width: 10px;
+            height: 16px;
             background: linear-gradient(145deg, #D0D0D0, #909090);
             border: 2px solid #333;
-            border-radius: 3px;
+            border-radius: 4px;
             box-shadow: inset 1px 1px 1px rgba(255,255,255,0.3);
         }
         
         .robot-arm.left .robot-hand {
-            left: -12px;
+            left: -15px;
         }
         
         .robot-arm.right .robot-hand {
-            right: -12px;
+            right: -15px;
         }
         
         @keyframes robotArmMove1 {
@@ -291,14 +292,14 @@
             80% { transform: rotate(20deg); }
         }
         
-        /* Robot legs/base */
+        /* Robot legs/base - connected to main body */
         .robot-legs {
             position: absolute;
-            bottom: -15px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 30px;
+            width: 85px;
+            height: 25px;
         }
         
         .robot-base {
@@ -348,13 +349,13 @@
         
         .clippy-speech-bubble {
             position: absolute;
-            bottom: 130px;
-            right: -20px;
+            bottom: 170px;
+            right: 20px;
             background: #fffbf0;
             border: 3px solid #333;
             border-radius: 15px;
             padding: 12px 16px;
-            max-width: 220px;
+            max-width: 240px;
             font-size: 12px;
             line-height: 1.4;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
