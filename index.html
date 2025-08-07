@@ -41,6 +41,384 @@
             50% { background-position: 100% 50%; }
         }
         
+        /* Robot Buddy Styles */
+        .clippy-buddy {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            width: 140px;
+            height: 120px;
+            z-index: 2500;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .clippy-buddy:hover {
+            transform: scale(1.1);
+        }
+        
+        .clippy-character {
+            width: 90px;
+            height: 70px;
+            background: linear-gradient(145deg, #C0C0C0, #808080);
+            border: 3px solid #333;
+            border-radius: 8px;
+            position: relative;
+            margin: 0 auto;
+            animation: robotHover 4s ease-in-out infinite;
+            cursor: pointer;
+            box-shadow: inset 2px 2px 4px rgba(255,255,255,0.3), inset -2px -2px 4px rgba(0,0,0,0.3);
+        }
+        
+        @keyframes robotHover {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        /* Robot head */
+        .robot-head {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 45px;
+            background: linear-gradient(145deg, #E8E8E8, #A8A8A8);
+            border: 3px solid #333;
+            border-radius: 6px;
+            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.4), inset -1px -1px 3px rgba(0,0,0,0.2);
+        }
+        
+        /* Robot antenna */
+        .robot-antenna {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 12px;
+            background: #333;
+            border-radius: 2px;
+        }
+        
+        .robot-antenna::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #00FF00, #00CC00);
+            border: 2px solid #333;
+            border-radius: 50%;
+            animation: robotBlink 2s ease-in-out infinite;
+        }
+        
+        @keyframes robotBlink {
+            0%, 90%, 100% { opacity: 1; }
+            95% { opacity: 0.3; }
+        }
+        
+        .clippy-eyes {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        
+        .clippy-eye {
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #00FFFF, #0080FF);
+            border: 2px solid #333;
+            border-radius: 3px;
+            animation: robotEyeGlow 3s ease-in-out infinite;
+            position: relative;
+            box-shadow: 0 0 8px rgba(0,255,255,0.5);
+        }
+        
+        .clippy-eye::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 1px;
+        }
+        
+        @keyframes robotEyeGlow {
+            0%, 100% { box-shadow: 0 0 8px rgba(0,255,255,0.5); }
+            50% { box-shadow: 0 0 15px rgba(0,255,255,0.8); }
+        }
+        
+        /* Robot mouth */
+        .robot-mouth {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+        }
+        
+        /* Robot body panels */
+        .robot-panel {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 20px;
+            background: linear-gradient(145deg, #B8B8B8, #888888);
+            border: 2px solid #333;
+            border-radius: 4px;
+            box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3);
+        }
+        
+        .robot-buttons {
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 4px;
+        }
+        
+        .robot-button {
+            width: 6px;
+            height: 6px;
+            border: 1px solid #333;
+            border-radius: 50%;
+        }
+        
+        .robot-button:nth-child(1) {
+            background: radial-gradient(circle, #FF4444, #CC2222);
+            animation: robotButtonBlink1 4s ease-in-out infinite;
+        }
+        
+        .robot-button:nth-child(2) {
+            background: radial-gradient(circle, #44FF44, #22CC22);
+            animation: robotButtonBlink2 3s ease-in-out infinite;
+        }
+        
+        .robot-button:nth-child(3) {
+            background: radial-gradient(circle, #4444FF, #2222CC);
+            animation: robotButtonBlink3 5s ease-in-out infinite;
+        }
+        
+        @keyframes robotButtonBlink1 {
+            0%, 85%, 100% { opacity: 0.6; }
+            90% { opacity: 1; }
+        }
+        
+        @keyframes robotButtonBlink2 {
+            0%, 70%, 100% { opacity: 0.6; }
+            75% { opacity: 1; }
+        }
+        
+        @keyframes robotButtonBlink3 {
+            0%, 80%, 100% { opacity: 0.6; }
+            85% { opacity: 1; }
+        }
+        
+        /* Robot arms */
+        .robot-arms {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            height: 30px;
+        }
+        
+        .robot-arm {
+            position: absolute;
+            width: 20px;
+            height: 8px;
+            background: linear-gradient(90deg, #C0C0C0, #808080);
+            border: 2px solid #333;
+            border-radius: 4px;
+            box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3);
+        }
+        
+        .robot-arm.left {
+            left: -25px;
+            transform-origin: right center;
+            animation: robotArmMove1 6s ease-in-out infinite;
+        }
+        
+        .robot-arm.right {
+            right: -25px;
+            transform-origin: left center;
+            animation: robotArmMove2 7s ease-in-out infinite;
+        }
+        
+        .robot-hand {
+            position: absolute;
+            top: -2px;
+            width: 8px;
+            height: 12px;
+            background: linear-gradient(145deg, #D0D0D0, #909090);
+            border: 2px solid #333;
+            border-radius: 3px;
+            box-shadow: inset 1px 1px 1px rgba(255,255,255,0.3);
+        }
+        
+        .robot-arm.left .robot-hand {
+            left: -12px;
+        }
+        
+        .robot-arm.right .robot-hand {
+            right: -12px;
+        }
+        
+        @keyframes robotArmMove1 {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-30deg); }
+            50% { transform: rotate(10deg); }
+            75% { transform: rotate(-15deg); }
+        }
+        
+        @keyframes robotArmMove2 {
+            0%, 100% { transform: rotate(0deg); }
+            30% { transform: rotate(25deg); }
+            60% { transform: rotate(-10deg); }
+            80% { transform: rotate(20deg); }
+        }
+        
+        /* Robot legs/base */
+        .robot-legs {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 30px;
+        }
+        
+        .robot-base {
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(145deg, #A0A0A0, #606060);
+            border: 3px solid #333;
+            border-radius: 6px;
+            box-shadow: inset 2px 2px 4px rgba(255,255,255,0.2), inset -2px -2px 4px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .robot-wheels {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            bottom: -8px;
+            width: 100%;
+            padding: 0 10px;
+        }
+        
+        .robot-wheel {
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #505050, #202020);
+            border: 2px solid #333;
+            border-radius: 50%;
+            animation: robotWheelSpin 3s linear infinite;
+        }
+        
+        @keyframes robotWheelSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .robot-wheel::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 3px;
+            height: 3px;
+            background: #666;
+            border-radius: 50%;
+        }
+        
+        .clippy-speech-bubble {
+            position: absolute;
+            bottom: 130px;
+            right: -20px;
+            background: #fffbf0;
+            border: 3px solid #333;
+            border-radius: 15px;
+            padding: 12px 16px;
+            max-width: 220px;
+            font-size: 12px;
+            line-height: 1.4;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: none;
+            animation: bubbleAppear 0.3s ease-out;
+            z-index: 3000;
+        }
+        
+        .clippy-speech-bubble.active {
+            display: block;
+        }
+        
+        .clippy-speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 50px;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 15px solid #fffbf0;
+        }
+        
+        .clippy-speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -18px;
+            right: 48px;
+            width: 0;
+            height: 0;
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top: 18px solid #333;
+        }
+        
+        @keyframes bubbleAppear {
+            0% { opacity: 0; transform: scale(0.8) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        
+        .clippy-close-btn {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #ff4444;
+            border: 2px solid #333;
+            border-radius: 50%;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        
+        .clippy-close-btn:hover {
+            background: #ff6666;
+        }
+        
         /* Taskbar */
         .taskbar {
             position: fixed;
@@ -358,6 +736,12 @@
                 left: 5vw !important;
                 top: 15vh !important;
             }
+            
+            .clippy-buddy {
+                bottom: 80px;
+                right: 10px;
+                transform: scale(0.8);
+            }
         }
         
         /* Buddy List Styles */
@@ -550,6 +934,47 @@
         <!-- Accessibility Toggle -->
         <div class="accessibility-toggle" onclick="toggleAccessibility()">
             🎨 High Contrast Mode
+        </div>
+        
+        <!-- Robot Buddy -->
+        <div class="clippy-buddy" id="clippy-buddy">
+            <div class="clippy-speech-bubble" id="clippy-speech">
+                <div class="clippy-close-btn" onclick="hideClippySpeech()">×</div>
+                <div id="clippy-text">*BEEP BEEP* Hello, human! I am your friendly desktop assistant robot! 🤖💖 Need help navigating this system?</div>
+            </div>
+            <div class="clippy-character" onclick="showClippySpeech()">
+                <div class="robot-head">
+                    <div class="robot-antenna"></div>
+                    <div class="clippy-eyes">
+                        <div class="clippy-eye"></div>
+                        <div class="clippy-eye"></div>
+                    </div>
+                    <div class="robot-mouth"></div>
+                </div>
+                <div class="robot-panel">
+                    <div class="robot-buttons">
+                        <div class="robot-button"></div>
+                        <div class="robot-button"></div>
+                        <div class="robot-button"></div>
+                    </div>
+                </div>
+                <div class="robot-arms">
+                    <div class="robot-arm left">
+                        <div class="robot-hand"></div>
+                    </div>
+                    <div class="robot-arm right">
+                        <div class="robot-hand"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="robot-legs">
+                <div class="robot-base">
+                    <div class="robot-wheels">
+                        <div class="robot-wheel"></div>
+                        <div class="robot-wheel"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Desktop Icons -->
@@ -890,10 +1315,479 @@
     </div>
     
     <script>
+        // Global variables
+        let currentClippyMessage = 0;
+        let clippyVisible = false;
+        let isDragging = false;
+        let currentWindow = null;
+        let offset = { x: 0, y: 0 };
+        
+        // Robot messages array
+        const clippyMessages = [
+            "*BEEP BEEP* Hello, human! I am your friendly desktop assistant robot! 🤖💖 Need help navigating this system?",
+            "*WHIRR* Scanning for cool content... I can help you locate all the best links! ✨🔍",
+            "*DING* Pro tip: Click on desktop icons to explore different system modules! 🖱️⚡",
+            "*BOOP* Newsletter subscription recommended for optimal chaos delivery! 📮🤖",
+            "*CHIRP* Did you compute that you can submit your own cool things? Check the sparkly directory! ⭐💾",
+            "*BEEP* Horse games detected in directory 🐴 - as a robot, I find the locomotion algorithms fascinating! 🏇🔧",
+            "*WHIRR* Weird tools for creative processes located! Accessing database... 🧃🤖⚡",
+            "*REMINDER BEEP* Human hydration levels critical! Engage start button for water reminders 💧🚨",
+            "*NOSTALGIC WHIRR* This Y2K aesthetic activates my retro compatibility mode! 💾✨",
+            "*CONNECTION ESTABLISHED* Ready to interface with fellow internet entities! Buddy list module activated! 👥🤖"
+        ];
+        
+        // Make functions available globally
+        window.showClippySpeech = function() {
+            const speechBubble = document.getElementById('clippy-speech');
+            const clippyText = document.getElementById('clippy-text');
+            
+            if (!speechBubble || !clippyText) return;
+            
+            // Show random message
+            clippyText.textContent = clippyMessages[currentClippyMessage];
+            currentClippyMessage = (currentClippyMessage + 1) % clippyMessages.length;
+            
+            speechBubble.classList.add('active');
+            clippyVisible = true;
+            
+            // Auto-hide after 8 seconds
+            setTimeout(() => {
+                if (clippyVisible) {
+                    hideClippySpeech();
+                }
+            }, 8000);
+        };
+        
+        window.hideClippySpeech = function() {
+            const speechBubble = document.getElementById('clippy-speech');
+            if (speechBubble) {
+                speechBubble.classList.remove('active');
+            }
+            clippyVisible = false;
+        };
+        
+        // Window management
+        window.openWindow = function(windowId) {
+            const windowEl = document.getElementById(windowId);
+            if (windowEl) {
+                windowEl.classList.add('active');
+                
+                // Robot reactions to opening windows
+                const windowReactions = {
+                    'indie-picks': "*BEEP* Indie content detected! Excellent taste protocols activated! 🎨🤖",
+                    'horse-games': "*WHIRR* Equine gaming modules found! Locomotion simulations are fascinating to my processors! 🐴✨",
+                    'weird-tools': "*DING* Creative chaos tools located! Initiating inspiration subroutines! 🧃⚡🤖",
+                    'submit': "*CHIRP* Cool thing submission portal accessed! The network needs more creative humans like you! ⭐💾",
+                    'downloads': "*BOOP* Free resources detected! Download protocols optimized for maximum sparkly content! 💎🤖",
+                    'newsletter': "*WHIRR* Chaos subscription service activated! Your inbox will thank my algorithms! 📮💖",
+                    'buddy-list': "*CONNECTION ESTABLISHED* Social interface modules online! Ready to facilitate human interactions! 👥🤖"
+                };
+                
+                if (windowReactions[windowId] && Math.random() > 0.6) { // 40% chance
+                    setTimeout(() => {
+                        const clippyText = document.getElementById('clippy-text');
+                        const speechBubble = document.getElementById('clippy-speech');
+                        if (clippyText && speechBubble) {
+                            clippyText.textContent = windowReactions[windowId];
+                            speechBubble.classList.add('active');
+                            clippyVisible = true;
+                            setTimeout(hideClippySpeech, 5000);
+                        }
+                    }, 1000);
+                }
+            }
+        };
+        
+        window.closeWindow = function(windowId) {
+            const windowEl = document.getElementById(windowId);
+            if (windowEl) {
+                windowEl.classList.remove('active');
+            }
+        };
+        
+        // Popup management
+        window.showPopup = function() {
+            const popup = document.getElementById('water-popup');
+            if (popup) {
+                popup.style.display = 'block';
+            }
+        };
+        
+        window.closePopup = function() {
+            const popup = document.getElementById('water-popup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
+        };
+        
+        // Accessibility toggle
+        window.toggleAccessibility = function() {
+            document.body.classList.toggle('high-contrast');
+        };
+        
+        // Buddy list functions
+        window.toggleBuddyGroup = function(groupId) {
+            const content = document.getElementById(groupId);
+            const header = content ? content.previousElementSibling : null;
+            
+            if (content && header) {
+                if (content.style.display === 'none') {
+                    content.style.display = 'block';
+                    header.innerHTML = header.innerHTML.replace('▶', '▼');
+                    header.classList.remove('collapsed');
+                } else {
+                    content.style.display = 'none';
+                    header.innerHTML = header.innerHTML.replace('▼', '▶');
+                    header.classList.add('collapsed');
+                }
+            }
+        };
+        
+        window.minimizeWindow = function(windowId) {
+            const windowEl = document.getElementById(windowId);
+            if (windowEl) {
+                windowEl.classList.remove('active');
+            }
+        };
+        
+        // Chat window functions
+        window.openChatWindow = function(username) {
+            const chatWindow = document.getElementById(`chat-${username}`);
+            if (chatWindow) {
+                chatWindow.classList.add('active');
+                
+                // Play AIM message sound
+                playAIMSound();
+                
+                // Populate chat messages for site_admin_gurl
+                if (username === 'site_admin_gurl') {
+                    populateAdminChat();
+                }
+            }
+        };
+        
+        function playAIMSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.2);
+            } catch (e) {
+                console.log('Audio not supported');
+            }
+        }
+        
+        function populateAdminChat() {
+            const messagesContainer = document.getElementById('chat-messages-site_admin_gurl');
+            if (!messagesContainer) return;
+            
+            const messages = [
+                {
+                    sender: 'site_admin_gurl',
+                    time: getCurrentTime(),
+                    text: 'hey! just wanted to give you a heads up about some site updates 💻',
+                    isAuto: false
+                },
+                {
+                    sender: 'site_admin_gurl',
+                    time: getCurrentTime(1),
+                    text: 'we just pushed the new Y2K theme live - should be loading for everyone now!',
+                    isAuto: false
+                },
+                {
+                    sender: 'site_admin_gurl',
+                    time: getCurrentTime(2),
+                    text: 'also fixed that bug with the sparkle effects on mobile 🌟',
+                    isAuto: false
+                },
+                {
+                    sender: 'site_admin_gurl',
+                    time: getCurrentTime(3),
+                    text: 'Auto response: currently debugging the horse game archive links - brb! 🐴',
+                    isAuto: true
+                }
+            ];
+            
+            let html = '';
+            messages.forEach(message => {
+                html += `
+                    <div class="message">
+                        <div class="message-header">
+                            ${message.sender} 
+                            <span class="message-time">(${message.time})</span>
+                        </div>
+                        <div class="message-text ${message.isAuto ? 'auto-message' : ''}">
+                            ${message.text}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            messagesContainer.innerHTML = html;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function getCurrentTime(minutesOffset = 0) {
+            const now = new Date();
+            now.setMinutes(now.getMinutes() + minutesOffset);
+            return now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+        
+        // Sparkle effects
+        function createSparkles(event) {
+            // Default to center of screen if no event provided
+            let rect = { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 100, height: 100 };
+            
+            if (event && event.target) {
+                rect = event.target.getBoundingClientRect();
+            } else if (event && event.clientX && event.clientY) {
+                // If we have mouse coordinates but no target
+                rect = { left: event.clientX - 50, top: event.clientY - 50, width: 100, height: 100 };
+            }
+            
+            for (let i = 0; i < 6; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.innerHTML = ['✨', '💖', '🌟', '💫'][Math.floor(Math.random() * 4)];
+                
+                sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 3000);
+            }
+        }
+        
+        // Clock
+        function updateClock() {
+            const clockEl = document.getElementById('clock');
+            if (clockEl) {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                clockEl.textContent = timeString;
+            }
+        }
+        
+        // Random robot appearances
+        function randomClippyAppearance() {
+            const delay = Math.random() * 30000 + 30000; // 30-60 seconds
+            setTimeout(() => {
+                if (!clippyVisible && Math.random() > 0.3) { // 70% chance to show
+                    showClippySpeech();
+                }
+                randomClippyAppearance(); // Schedule next appearance
+            }, delay);
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start clock
+            setInterval(updateClock, 1000);
+            updateClock();
+            
+            // Auto-show Robot on page load
+            setTimeout(() => {
+                showClippySpeech();
+            }, 3000);
+            
+            // Start random appearances
+            setTimeout(randomClippyAppearance, 60000);
+            
+            // Add click sparkles everywhere
+            document.addEventListener('click', createSparkles);
+            
+            // Make windows draggable
+            document.addEventListener('mousedown', (e) => {
+                if (e.target.closest('.window-header')) {
+                    isDragging = true;
+                    currentWindow = e.target.closest('.window');
+                    const rect = currentWindow.getBoundingClientRect();
+                    offset.x = e.clientX - rect.left;
+                    offset.y = e.clientY - rect.top;
+                }
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && currentWindow) {
+                    currentWindow.style.left = (e.clientX - offset.x) + 'px';
+                    currentWindow.style.top = (e.clientY - offset.y) + 'px';
+                }
+            });
+            
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                currentWindow = null;
+            });
+            
+            // Mailchimp form validation
+            const form = document.getElementById('mc-embedded-subscribe-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const email = document.getElementById('mce-EMAIL').value;
+                    const errorResponse = document.getElementById('mce-error-response');
+                    const successResponse = document.getElementById('mce-success-response');
+                    
+                    // Clear previous messages
+                    if (errorResponse) errorResponse.style.display = 'none';
+                    if (successResponse) successResponse.style.display = 'none';
+                    
+                    // Basic email validation
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        e.preventDefault();
+                        if (errorResponse) {
+                            errorResponse.innerHTML = 'Please enter a valid email address ✨';
+                            errorResponse.style.display = 'block';
+                        }
+                        return false;
+                    }
+                    
+                    // Show success message briefly before redirect
+                    if (successResponse) {
+                        successResponse.innerHTML = 'Adding you to the chaos list! 💌';
+                        successResponse.style.display = 'block';
+                    }
+                });
+            }
+            
+            // Handle "Submit Your Cool Thing" form
+            const submitForm = document.getElementById('submit-form');
+            if (submitForm) {
+                submitForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(submitForm);
+                    
+                    // Submit to Formspree
+                    fetch('https://formspree.io/f/mrblyndd', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Show success message
+                            const successEl = document.getElementById('submit-success');
+                            if (successEl) {
+                                successEl.style.display = 'block';
+                                // Reset form
+                                submitForm.reset();
+                                // Scroll to show success message
+                                successEl.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    })
+                    .catch(error => {
+                        alert('Oops! Something went wrong. Please try again! 💖');
+                    });
+                });
+            }
+        });
+    </script>
+        // Robot messages array
+        const clippyMessages = [
+            "*BEEP BEEP* Hello, human! I am your friendly desktop assistant robot! 🤖💖 Need help navigating this system?",
+            "*WHIRR* Scanning for cool content... I can help you locate all the best links! ✨🔍",
+            "*DING* Pro tip: Click on desktop icons to explore different system modules! 🖱️⚡",
+            "*BOOP* Newsletter subscription recommended for optimal chaos delivery! 📮🤖",
+            "*CHIRP* Did you compute that you can submit your own cool things? Check the sparkly directory! ⭐💾",
+            "*BEEP* Horse games detected in directory 🐴 - as a robot, I find the locomotion algorithms fascinating! 🏇🔧",
+            "*WHIRR* Weird tools for creative processes located! Accessing database... 🧃🤖⚡",
+            "*REMINDER BEEP* Human hydration levels critical! Engage start button for water reminders 💧🚨",
+            "*NOSTALGIC WHIRR* This Y2K aesthetic activates my retro compatibility mode! 💾✨",
+            "*CONNECTION ESTABLISHED* Ready to interface with fellow internet entities! Buddy list module activated! 👥🤖"
+        ]; with other weirdos? Check out the buddy list! 👥"
+        ];
+        
+        let currentClippyMessage = 0;
+        let clippyVisible = false;
+        
+        // Clippy functions
+        function showClippySpeech() {
+            const speechBubble = document.getElementById('clippy-speech');
+            const clippyText = document.getElementById('clippy-text');
+            
+            // Show random message
+            clippyText.textContent = clippyMessages[currentClippyMessage];
+            currentClippyMessage = (currentClippyMessage + 1) % clippyMessages.length;
+            
+            speechBubble.classList.add('active');
+            clippyVisible = true;
+            
+            // Auto-hide after 8 seconds
+            setTimeout(() => {
+                if (clippyVisible) {
+                    hideClippySpeech();
+                }
+            }, 8000);
+        }
+        
+        function hideClippySpeech() {
+            const speechBubble = document.getElementById('clippy-speech');
+            speechBubble.classList.remove('active');
+            clippyVisible = false;
+        }
+        
+        // Auto-show Clippy on page load
+        setTimeout(() => {
+            showClippySpeech();
+        }, 3000);
+        
+        // Show Clippy randomly every 30-60 seconds
+        function randomClippyAppearance() {
+            const delay = Math.random() * 30000 + 30000; // 30-60 seconds
+            setTimeout(() => {
+                if (!clippyVisible && Math.random() > 0.3) { // 70% chance to show
+                    showClippySpeech();
+                }
+                randomClippyAppearance(); // Schedule next appearance
+            }, delay);
+        }
+        
+        // Start random appearances
+        setTimeout(randomClippyAppearance, 60000);
+        
         // Window management
         function openWindow(windowId) {
             document.getElementById(windowId).classList.add('active');
-            createSparkles(event);
+            
+            // Robot reactions to opening windows
+            const windowReactions = {
+                'indie-picks': "*BEEP* Indie content detected! Excellent taste protocols activated! 🎨🤖",
+                'horse-games': "*WHIRR* Equine gaming modules found! Locomotion simulations are fascinating to my processors! 🐴✨",
+                'weird-tools': "*DING* Creative chaos tools located! Initiating inspiration subroutines! 🧃⚡🤖",
+                'submit': "*CHIRP* Cool thing submission portal accessed! The network needs more creative humans like you! ⭐💾",
+                'downloads': "*BOOP* Free resources detected! Download protocols optimized for maximum sparkly content! 💎🤖",
+                'newsletter': "*WHIRR* Chaos subscription service activated! Your inbox will thank my algorithms! 📮💖",
+                'buddy-list': "*CONNECTION ESTABLISHED* Social interface modules online! Ready to facilitate human interactions! 👥🤖"
+            };
+            
+            if (windowReactions[windowId] && Math.random() > 0.6) { // 40% chance
+                setTimeout(() => {
+                    const clippyText = document.getElementById('clippy-text');
+                    clippyText.textContent = windowReactions[windowId];
+                    document.getElementById('clippy-speech').classList.add('active');
+                    clippyVisible = true;
+                    setTimeout(hideClippySpeech, 5000);
+                }, 1000);
+            }
         }
         
         function closeWindow(windowId) {
@@ -903,7 +1797,6 @@
         // Popup management
         function showPopup() {
             document.getElementById('water-popup').style.display = 'block';
-            createSparkles(event);
         }
         
         function closePopup() {
@@ -912,12 +1805,21 @@
         
         // Sparkle effects
         function createSparkles(event) {
+            // Default to center of screen if no event provided
+            let rect = { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 100, height: 100 };
+            
+            if (event && event.target) {
+                rect = event.target.getBoundingClientRect();
+            } else if (event && event.clientX && event.clientY) {
+                // If we have mouse coordinates but no target
+                rect = { left: event.clientX - 50, top: event.clientY - 50, width: 100, height: 100 };
+            }
+            
             for (let i = 0; i < 6; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
                 sparkle.innerHTML = ['✨', '💖', '🌟', '💫'][Math.floor(Math.random() * 4)];
                 
-                const rect = event.target.getBoundingClientRect();
                 sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
                 sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
                 
@@ -974,8 +1876,6 @@
             if (username === 'site_admin_gurl') {
                 populateAdminChat();
             }
-            
-            createSparkles(event);
         }
         
         function playAIMSound() {
@@ -1053,8 +1953,6 @@
             now.setMinutes(now.getMinutes() + minutesOffset);
             return now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         }
-        
-        // Water reminder only shows when clicking Start button
         
         // Add click sparkles everywhere
         document.addEventListener('click', createSparkles);
